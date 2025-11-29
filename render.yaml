@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn order.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      DJANGO_SETTINGS_MODULE: "order.settings"
+      PYTHON_VERSION: "3.12.0"
+
+staticPublishPath: staticfiles
