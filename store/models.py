@@ -20,16 +20,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.nazev_produktu
-    
-validace_cisla_telefonu = RegexValidator(
-    regex=r'^\+?\d{9,15}$',
-    message="Telefonní číslo musí mít 9–15 číslic a může začínat +."
-)
+
 
 class Order(models.Model):
     jmeno = models.CharField(max_length=100)
     email = models.EmailField()
-    telefon = models.CharField(max_length=15, validators=[validace_cisla_telefonu])
+    telefon = models.CharField(max_length=15)
     produkt = models.ForeignKey(Product, on_delete=models.CASCADE)
     pocet = models.IntegerField()
     addresa = models.TextField()
