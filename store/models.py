@@ -1,5 +1,9 @@
 from django.db import models
 from decimal import Decimal, ROUND_HALF_UP
+from django.core.validators import RegexValidator
+
+
+
 
 # Create your models here.
 class Product(models.Model):
@@ -17,10 +21,15 @@ class Product(models.Model):
     def __str__(self):
         return self.nazev_produktu
     
+validace_cisla_telefonu = RegexValidator(
+    regex=r'^\+?\d{9,15}$',
+    message="Telefonní číslo musí mít 9–15 číslic a může začínat +."
+)
+
 class Order(models.Model):
     jmeno = models.CharField(max_length=100)
     email = models.EmailField()
-    telefon = models.CharField(max_length=15)
+    telefon = models.CharField(max_length=15, validators=[validace_cisla_telefonu])
     produkt = models.ForeignKey(Product, on_delete=models.CASCADE)
     pocet = models.IntegerField()
     addresa = models.TextField()

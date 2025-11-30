@@ -28,7 +28,7 @@
             <hr>
             <p><strong>Produkt:</strong> {{ order.produkt.nazev_produktu }}</p>
             <p><strong>Množství:</strong> {{ order.pocet }}</p>
-            <p><strong>Celková cena:</strong> {{ order.celkem_cena|floatformat:2 }} Kč</p>
+            <p><strong>Celková cena s DPH:</strong> {{ order.celkem_cena|floatformat:2 }} Kč</p>
             <p><strong>Doručovací adresa:</strong> {{ order.addresa }}</p>
             <hr>
             <p class="fw-bold">Cena v EUR: {{ cena_eur|floatformat:2 }} €</p>
